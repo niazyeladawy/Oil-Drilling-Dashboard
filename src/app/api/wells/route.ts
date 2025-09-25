@@ -4,6 +4,6 @@ import db from '../db';
 import type { Well } from '../../../types/well';
 
 export async function GET() {
-  const wells: Well[] = db.prepare('SELECT * FROM wells').all();
+  const wells = db.prepare('SELECT * FROM wells').all() as Well[];
   return NextResponse.json(wells);
 }

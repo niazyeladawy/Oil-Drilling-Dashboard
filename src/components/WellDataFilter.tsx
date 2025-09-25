@@ -66,7 +66,7 @@ export default function WellDataFilter({
 
     const dataArray = Array.isArray(well.data) ? well.data : JSON.parse(well.data || '[]');
 
-const filtered = dataArray.filter((d: WellDataRow) => {
+    const filtered = dataArray.filter((d: WellDataRow) => {
       const val = Number(d[selectedColumn]);
       if (isNaN(val)) return false;
       const minCheck = minValue !== '' ? val >= minValue : true;
@@ -79,18 +79,21 @@ const filtered = dataArray.filter((d: WellDataRow) => {
   };
 
   const handleReset = () => {
-  setSelectedColumn((columns[0] as keyof WellDataRow) || '');
-  setMinValue('');
-  setMaxValue('');
-  onFilterChange(well.data || []);
-};
+    setSelectedColumn((columns[0] as keyof WellDataRow) || '');
+    setMinValue('');
+    setMaxValue('');
+    onFilterChange(well.data || []);
+  };
 
 
   return (
     <div className="flex flex-col gap-4">
       {/* First row: Select */}
       <div className="w-full">
-        <Select value={selectedColumn} onValueChange={(val) => setSelectedColumn(val as keyof WellDataRow)}>
+        <Select
+          value={selectedColumn ? String(selectedColumn) : undefined}
+          onValueChange={(val) => setSelectedColumn(val as keyof WellDataRow)}
+        >
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Select column" />
           </SelectTrigger>

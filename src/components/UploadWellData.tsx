@@ -33,7 +33,7 @@ export default function UploadWellData() {
     },
     onMutate: () => setLoading(true),
     onSuccess: (data) => {
-      queryClient.invalidateQueries(['wells']);
+queryClient.invalidateQueries({ queryKey: ['wells'] });
 
       // Show general success toast
       toast.success(data.message || 'File uploaded successfully!');

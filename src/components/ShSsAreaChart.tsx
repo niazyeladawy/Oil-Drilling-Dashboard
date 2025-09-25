@@ -1,5 +1,6 @@
 'use client';
-import type { Well } from '../types/well';
+import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
+import type { Well, WellDataRow } from '../types/well';
 import {
   AreaChart,
   Area,
@@ -7,6 +8,7 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  TooltipProps,
 } from 'recharts';
 
 interface ShSsAreaChartProps {
@@ -44,7 +46,13 @@ export default function ShSsAreaChart({ well }: ShSsAreaChartProps) {
     )
   );
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
+  payload?: {
+    payload: WellDataRow;
+  }[];
+}
+
+  const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (!active || !payload || !payload.length) return null;
     const dataPoint = payload[0].payload;
 

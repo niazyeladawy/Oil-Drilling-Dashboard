@@ -10,6 +10,8 @@ export interface WellDataRow {
   '%Salt': number;
   DT: number;
   GR: number;
+    [key: string]: number; // 👈 add this
+
 }
 
 export interface Well {

@@ -8,7 +8,7 @@ import { DialogHeader, DialogTitle } from './ui/dialog';
 import { Well } from '@/types/well';
 
 interface ChatbotSidebarProps {
-  activeTabId?: string;
+  activeTabId?: number | null;
   filteredWell?: Well | null; // use the Well type
 }
 
